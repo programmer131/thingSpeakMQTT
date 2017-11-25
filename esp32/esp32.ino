@@ -362,7 +362,7 @@ void setup()
 	xTaskCreatePinnedToCore(blinkTask6, "loop10", 4096, (void *)8, 2, NULL, ARDUINO_RUNNING_CORE);
 	xTaskCreatePinnedToCore(blinkTask7, "loop11", 4096, (void *)9, 2, NULL, ARDUINO_RUNNING_CORE);
 	xTaskCreatePinnedToCore(blinkTask8, "loop12", 4096, (void *)10, 2, NULL, ARDUINO_RUNNING_CORE);
-	xTaskCreatePinnedToCore(blinkTask9, "loop12", 4096, (void *)11, 2, NULL, ARDUINO_RUNNING_CORE);
+	xTaskCreatePinnedToCore(blinkTask9, "loop13", 4096, (void *)11, 2, NULL, ARDUINO_RUNNING_CORE);
 }
 
 void loop()
