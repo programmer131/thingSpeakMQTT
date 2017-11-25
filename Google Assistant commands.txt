@@ -1,0 +1,24 @@
+blink next led # times
+blink next led # x
+next led blink # times
+Response--> Alright, I'm on it.
+
+toggle $ LED # x
+toggle $ LED # times
+flash $ LED # times
+Response--> sure, I'm on it.
+
+turn $ green LED
+green LED $
+change green led state to $
+Response--> Alright, I'm on it.
+
+turn $ red LED
+red LED $
+change red led state to $
+Response-->why not, it is done
+
+Change status of all LEDs to reset
+reset all LEDs
+turn off all LEDs
+Response-->alright, I'm on it.
