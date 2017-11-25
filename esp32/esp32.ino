@@ -27,8 +27,8 @@ volatile unsigned char blinkFlagArr[9]={0};
 volatile unsigned int numberOfBlinksArr[9]={0};
 
 const char* mqtt_server = "mqtt.thingspeak.com";
-char mqttUserName[] = "your name";  // Can be any name.
-char mqttPass[] = "your mqtt api key";  // Change this your MQTT API Key from Account > MyProfile.
+char mqttUserName[] = "thingSpeakBuddies";  // Can be any name.
+char mqttPass[] = "TXJU9R9RNEE9M0LJ";  // Change this your MQTT API Key from Account > MyProfile.
 
 //create wifi client class' object, name it espClient
 WiFiClient espClient;
@@ -48,12 +48,11 @@ void setup_wifi()
 	{
 		delay(1000);
 		Serial.print(".");
-	}
-    
-        Serial.println("");
-        Serial.println("WiFi connected");
-        Serial.println("IP address: ");
-        Serial.println(WiFi.localIP());
+	}    
+	Serial.println("");
+	Serial.println("WiFi connected");
+	Serial.println("IP address: ");
+	Serial.println(WiFi.localIP());
 }
 
 
@@ -72,7 +71,7 @@ void reconnect()
         {
             Serial.println("connected");
             //replace 361111 with your channel id
-            client.subscribe("channels/361111/subscribe/fields/field1");
+            client.subscribe("channels/369744/subscribe/fields/field1");
         }
         else
         {
@@ -110,31 +109,27 @@ void callback(char* topic, byte* payload, unsigned int length)
     }
     else if(rxMessage.equals("red on"))
     {
-    		numberOfBlinksArr[0]=0;//stop blinking if already blinking
-    		digitalWrite(LED_RED_PIN, HIGH);    		
+   		numberOfBlinksArr[0]=0;//stop blinking if already blinking
+   		digitalWrite(LED_RED_PIN, HIGH);    		
     }
     else if(rxMessage.equals("red off"))
     {
-    		numberOfBlinksArr[0]=0;//stop blinking if already blinking
-    		digitalWrite(LED_RED_PIN, LOW);    		
+   		numberOfBlinksArr[0]=0;//stop blinking if already blinking
+   		digitalWrite(LED_RED_PIN, LOW);    		
     }
     else if(rxMessage.indexOf("blinkred")>=0)
     {
     	String numString;
-    	//blinkFlag=1;
     	blinkFlagArr[0]=1;	    			    	
 	    numString=rxMessage.substring(9+rxMessage.indexOf("blinkred"));
     	numberOfBlinksArr[0]=numString.toInt();  
-    	//ledToBlink=LED_RED_PIN;  	
     }
     else if(rxMessage.indexOf("blinkgreen")>=0)
     {
     	String numString;
     	blinkFlagArr[1]=1;
     	numString=rxMessage.substring(11+rxMessage.indexOf("blinkgreen"));
-    	//Serial.print(numString);
     	numberOfBlinksArr[1]=numString.toInt();  
-    	//ledToBlink=LED_GREEN_PIN;  	
     }
     else if(rxMessage.indexOf("blink")>=0)
     {
@@ -146,7 +141,6 @@ void callback(char* topic, byte* payload, unsigned int length)
     	if(num>0)
     	{    		
 			blinkFlagArr[LedToBlinkNum]=1;
-	    	//Serial.println(numString);	    		    	
 	    	numberOfBlinksArr[LedToBlinkNum]=num;
 	    	LedToBlinkNum++;
 	    	if(LedToBlinkNum>=9)
@@ -156,11 +150,11 @@ void callback(char* topic, byte* payload, unsigned int length)
     else if(rxMessage.equals("allreset"))
     {
     	for(char counter=0;counter<=8;counter++)
-    		{
-    			numberOfBlinksArr[counter]=0;    			
-    		}
-    		digitalWrite(LED_RED_PIN, LOW);
-    		digitalWrite(LED_GREEN_PIN, LOW);
+		{
+			numberOfBlinksArr[counter]=0;    			
+		}
+		digitalWrite(LED_RED_PIN, LOW);
+		digitalWrite(LED_GREEN_PIN, LOW);
     }
 }
 
@@ -339,9 +333,7 @@ void blinkTask9(void *pvParameters)
 
 void setup()
 {
-	 Serial.begin(115200);
-	//pinMode(LED_RED_PIN, OUTPUT);           // set pin to input	
-	//pinMode(LED_GREEN_PIN, OUTPUT);           // set pin to input	
+	Serial.begin(115200);
 	pinMode(LED1, OUTPUT);           // set pin to input	
 	pinMode(LED2, OUTPUT);           // set pin to input	
 	pinMode(LED3, OUTPUT);           // set pin to input	
