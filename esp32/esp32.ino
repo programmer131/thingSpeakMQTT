@@ -35,8 +35,6 @@ WiFiClient espClient;
 //create mqtt client object from PubSubClient Class
 PubSubClient client(espClient);
 
-
-
 void setup_wifi()
 { 
 //connect to wifi with ssid/password 
@@ -70,7 +68,10 @@ void reconnect()
         if (client.connect(clientId.c_str(),mqttUserName,mqttPass))
         {
             Serial.println("connected");
-            //replace 361111 with your channel id
+            //replace 369744 with your channel id
+			//you can also play with my channel id
+			//if use one channel ID, any one of you can send command from Google Assistant, 
+			//and that will change LEDs status on all boards.
             client.subscribe("channels/369744/subscribe/fields/field1");
         }
         else
